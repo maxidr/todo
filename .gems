@@ -1,3 +1,6 @@
 cuba -v 3.1.0
 cuba-contrib -v 3.1.0
 cutest -v 1.2.0
+rake -v 0.9.2.2
+mote -v 1.1.1
+capybara -v 2.0.2
