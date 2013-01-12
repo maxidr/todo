@@ -1,1 +1,11 @@
-<h1>To do list!! fuck yeahhh!</h1>
+<h1>The To do list</h1>
+<form action="/tasks" method="post">
+  <label>Add a new task</label>
+  <input type="text" name="title" value="">
+  <button type="submit" name="submit">Add</button>
+</form>
+<ul>
+  % Task.all.each do |task|
+    <li>{{task.title}}</li>
+  % end 
+</ul>
