@@ -1,11 +1,18 @@
 <h1>The To do list</h1>
+
+% if task.errors.has_key?(:title)
+  <span class="help-inline">
+    You need to supply a title for the task.
+  </span>
+% end
 <form action="/tasks" method="post">
   <label>Add a new task</label>
-  <input type="text" name="title" value="">
+  <input type="text" name="task[title]" value="{{ task.title  }}">
   <button type="submit" name="submit">Add</button>
 </form>
+
 <ul>
-  % Task.all.each do |task|
-    <li>{{task.title}}</li>
+  % Task.all.each do |t|
+    <li>{{ t.title }}</li>
   % end 
 </ul>
