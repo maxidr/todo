@@ -30,4 +30,10 @@ scope do
 
     assert has_content?('You need to supply a title for the task.')
   end
+
+  test 'done task' do
+    visit '/'
+    find('li', text: 'my first task').find('button').click()
+    assert !has_content?('my first task')
+  end
 end

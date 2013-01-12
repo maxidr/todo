@@ -1,7 +1,7 @@
 ENV["REDIS_URL"]  ||= "redis://localhost:6379/2"
 
 require File.expand_path("../app", File.dirname(__FILE__))
-require "cuba/capybara"
+require "cuba/test"
 
 prepare do
   Capybara.reset!

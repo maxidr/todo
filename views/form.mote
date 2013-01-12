@@ -1,0 +1,11 @@
+% if task.errors.has_key?(:title)
+  <span class="help-inline">
+    You need to supply a title for the task.
+  </span>
+% end
+<form action="/tasks" method="post">
+  <label>Add a new task</label>
+  <input type="text" name="task[title]" value="{{ task.title  }}">
+  <button type="submit" name="submit">Add</button>
+</form>
+
