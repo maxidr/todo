@@ -1,16 +1,20 @@
 <h1>The To do list</h1>
 
+{{ partial "task_list_form", list: list }}
 {{ partial "form", task: task }}
 
-<ul>
-  % Task.to_complete.each do |t|
-    <li>
-      <form action="/tasks/{{ t.id }}" method="post" class="form-inline">
-        {{ t.title }}
-        <input type="hidden" name="_method" value="put">
-        <input type="hidden" name="task[done]" value="true">
-        <button type="submit" name="done" class="btn btn-link">done</button>
-      </form>
-    </li>
-  % end 
-</ul>
+% TaskList.all.each do |list| 
+  <h2>{{ list.name }}</h2>
+  <ul>    
+    % list.tasks_to_complete.each do |t|
+      <li>
+        <form action="/tasks/{{ t.id }}" method="post" class="form-inline">
+          {{ t.title }}
+          <input type="hidden" name="_method" value="put">
+          <input type="hidden" name="task[done]" value="true">
+          <button type="submit" name="done" class="btn btn-link">done</button>
+        </form>
+      </li>
+    % end 
+  </ul>
+% end

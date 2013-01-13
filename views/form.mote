@@ -4,9 +4,15 @@
     You need to supply a title for the task.
   </div>
 % end
+
 <form action="/tasks" method="post" class="form-inline">
   <label>Add a new task</label>
   <input type="text" name="task[title]" value="{{ task.title  }}" placeholder="title of the task">
-  <button type="submit" name="submit" class="btn">Add</button>
+  <select name="on_list">
+    % TaskList.all.each do |list|
+      <option value="{{list.id}}">{{ list.name }}</option>
+    % end
+  </select>
+  <button type="submit" name="submit" class="btn" id="add_task">Add</button>
 </form>
 
