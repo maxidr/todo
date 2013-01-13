@@ -1,7 +1,7 @@
 <h1>The To do list</h1>
 
 {{ partial "task_list_form", list: list }}
-{{ partial "form", task: task }}
+{{ partial "task_form", task: task }}
 
 % TaskList.all.each do |list| 
   <h2>{{ list.name }}</h2>
