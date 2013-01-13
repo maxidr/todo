@@ -1,10 +1,15 @@
-<h1>The To do list</h1>
+<div class="page-header">
+  <h1>The To do list</h1>
+</div>
 
-{{ partial "task_list_form", list: list }}
-{{ partial "task_form", task: task }}
+<div class="accordion" id="accordion">
+  {{ partial "task_list_form", list: list }}
+  {{ partial "task_form", task: task }}
+</div>
 
+<legend>Task lists</legend>
 % TaskList.all.each do |list| 
-  <h2>{{ list.name }}</h2>
+  <h4>{{ list.name }}</h4>
   <ul>    
     % list.tasks_to_complete.each do |t|
       <li>

@@ -5,8 +5,18 @@
   </div>
 % end
 
-<form action="/lists" method="post" class="form-inline">
-  <label>Add a new list of tasks</label>
-  <input type="text" name="list[name]" value="{{ list.name }}" placeholder="name of the list">
-  <button type="submit" name="submit" id="add_list" class="btn">Add</button>
-</form>
+<div class="accordion-group">
+  <div class="accordion-heading">
+    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTaskList">Create a task list</a>
+  </div>
+
+  <div id="collapseTaskList" class="accordion-body collapse">
+    <div class="accordion-inner">
+      <form action="/lists" method="post" class="form-inline">
+        <label>Add a new list of tasks</label>
+        <input type="text" name="list[name]" value="{{ list.name }}" placeholder="name of the list">
+        <button type="submit" name="submit" id="add_list" class="btn">Add</button>
+      </form>
+    </div>
+  </div>
+</div>

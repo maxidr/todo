@@ -1,18 +1,28 @@
-% if task.errors.has_key?(:title)
-  <div class="alert alert-error">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    You need to supply a title for the task.
+<div class="accordion-group">
+  <div class="accordion-heading">
+    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTask">Create a task</a>
   </div>
-% end
 
-<form action="/tasks" method="post" class="form-inline">
-  <label>Add a new task</label>
-  <input type="text" name="task[title]" value="{{ task.title  }}" placeholder="title of the task">
-  <select name="on_list">
-    % TaskList.all.each do |list|
-      <option value="{{list.id}}">{{ list.name }}</option>
-    % end
-  </select>
-  <button type="submit" name="submit" class="btn" id="add_task">Add</button>
-</form>
+  <div id="collapseTask" class="accordion-body collapse in">
+    <div class="accordion-inner">
+      % if task.errors.has_key?(:title)
+        <div class="alert alert-error">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          You need to supply a title for the task.
+        </div>
+      % end
 
+
+      <form action="/tasks" method="post" class="form-inline">
+        <label>Add a new task</label>
+        <input type="text" name="task[title]" value="{{ task.title  }}" placeholder="title of the task" autofocus>
+        <select name="on_list">
+          % TaskList.all.each do |list|
+            <option value="{{list.id}}">{{ list.name }}</option>
+          % end
+        </select>
+        <button type="submit" name="submit" class="btn" id="add_task">Add</button>
+      </form>
+    </div>
+  </div>
+</div>
