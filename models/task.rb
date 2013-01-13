@@ -4,13 +4,9 @@ class Task < Ohm::Model
   reference :on_list, :TaskList
   index :done
 
-
   def validate
     assert_present :title
-    #assert_present :on_list
+    assert_present :on_list
   end
 
-  def self.to_complete
-    Task.find(done: false)
-  end
 end
