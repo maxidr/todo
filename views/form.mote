@@ -1,11 +1,12 @@
 % if task.errors.has_key?(:title)
-  <span class="help-inline">
+  <div class="alert alert-error">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
     You need to supply a title for the task.
-  </span>
+  </div>
 % end
-<form action="/tasks" method="post">
+<form action="/tasks" method="post" class="form-inline">
   <label>Add a new task</label>
-  <input type="text" name="task[title]" value="{{ task.title  }}">
-  <button type="submit" name="submit">Add</button>
+  <input type="text" name="task[title]" value="{{ task.title  }}" placeholder="title of the task">
+  <button type="submit" name="submit" class="btn">Add</button>
 </form>
 

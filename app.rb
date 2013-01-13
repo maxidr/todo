@@ -37,10 +37,9 @@ Cuba.define do
   end
 
   on put do
-    on 'tasks/:id' do |id| 
+    on 'tasks/:id', param('task') do |id, params|
       task = Task[id]
-      task.done = true
-      task.save
+      task.update(params)
       res.redirect '/', 303
     end
   end

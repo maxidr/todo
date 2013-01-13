@@ -5,10 +5,11 @@
 <ul>
   % Task.to_complete.each do |t|
     <li>
-      {{ t.title }}
-      <form action="/tasks/{{ t.id }}" method="post">
+      <form action="/tasks/{{ t.id }}" method="post" class="form-inline">
+        {{ t.title }}
         <input type="hidden" name="_method" value="put">
-        <button type="submit" name="done">Done!</button>
+        <input type="hidden" name="task[done]" value="true">
+        <button type="submit" name="done" class="btn btn-link">done</button>
       </form>
     </li>
   % end 
