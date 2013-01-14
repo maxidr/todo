@@ -9,4 +9,9 @@ class Task < Ohm::Model
     assert_present :on_list
   end
 
+  def initialize(atts = {})
+    atts[:done] ||= false
+    super atts
+  end
+
 end

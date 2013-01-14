@@ -1,4 +1,4 @@
-ENV["REDIS_URL"]  ||= "redis://localhost:6379/2"
+ENV["REDIS_URL"] ||= "redis://127.0.0.1:6379/13"
 
 require File.expand_path("../app", File.dirname(__FILE__))
 require "cuba/test"

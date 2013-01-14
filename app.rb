@@ -1,5 +1,7 @@
 $:.unshift File.dirname(__FILE__)
 
+require File.expand_path("settings", File.dirname(__FILE__))
+
 require "cuba"
 require "cuba/contrib"
 require "mote"
@@ -14,7 +16,7 @@ Cuba.use Rack::Static,
   root: 'public',
   urls: ['/js', '/css', '/img']
 
-Ohm.connect(url: 'redis://127.0.0.1:6379/0')
+Ohm.connect(url: Settings::REDIS_URL)
 
 Dir["./models/**/*.rb"].each  { |rb| require rb }
 Dir["./lib/**/*.rb"].each  { |rb| require rb }
@@ -27,9 +29,8 @@ Cuba.define do
   end
 
   on post do
-    on 'tasks', param('task'), param('on_list') do |params, on_list|
-      list = TaskList[on_list]
-      task = Task.new(params.merge(done: false, on_list: list))
+    on 'tasks', param('task') do |params|
+      task = Task.new(params)
       
       if task.save
         res.redirect '/', 303

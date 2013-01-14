@@ -4,13 +4,6 @@ setup do
   Ohm.flush
 end
 
-
-scope do
-  test 'home' do
-    assert true
-  end
-end
-
 scope do
   setup do
     list = TaskList.create(name: 'My list')
@@ -19,8 +12,8 @@ scope do
 
   test 'home' do
     visit '/'
-    
-    assert has_content?('To do')
+   
+    assert has_content?('My list')
     assert has_content?('my first task')
   end
 
@@ -45,7 +38,7 @@ scope do
     visit '/'
     
     fill_in 'task[title]', with: 'my second task'
-    select 'My list', from: 'on_list'
+    select 'My list', from: 'task[on_list_id]'
     click_button 'add_task'
 
     assert has_content?('my second task')

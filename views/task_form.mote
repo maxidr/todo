@@ -11,12 +11,18 @@
           You need to supply a title for the task.
         </div>
       % end
+      % if task.errors.has_key?(:on_list)
+        <div class="alert alert-error">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          You neet to select one list to create the task.          
+        </div>
+      % end
 
 
       <form action="/tasks" method="post" class="form-inline">
         <label>Add a new task</label>
         <input type="text" name="task[title]" value="{{ task.title  }}" placeholder="title of the task" autofocus>
-        <select name="on_list">
+        <select name="task[on_list_id]">
           % TaskList.all.each do |list|
             <option value="{{list.id}}">{{ list.name }}</option>
           % end
