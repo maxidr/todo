@@ -20,6 +20,7 @@ Ohm.connect(url: Settings::REDIS_URL)
 
 Dir["./models/**/*.rb"].each  { |rb| require rb }
 Dir["./lib/**/*.rb"].each  { |rb| require rb }
+Dir["./routes/**/*.rb"].each  { |rb| require rb }
 
 Cuba.plugin Helpers
 
@@ -28,32 +29,12 @@ Cuba.define do
     view_home
   end
 
-  on post do
-    on 'tasks', param('task') do |params|
-      task = Task.new(params)
-      
-      if task.save
-        res.redirect '/', 303
-      else
-        view_home(task: task)
-      end
-    end
-
-    on 'lists', param('list') do |params|
-      list = TaskList.new(params)
-      if list.save
-        res.redirect '/', 303
-      else
-        view_home(list: list)
-      end
-    end
+  on 'tasks' do
+    run Tasks
   end
 
-  on put do
-    on 'tasks/:id', param('task') do |id, params|
-      task = Task[id]
-      task.update(params)
-      res.redirect '/', 303
-    end
+  on 'lists' do
+    run Lists
   end
+  
 end
